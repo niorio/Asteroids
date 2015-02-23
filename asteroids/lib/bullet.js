@@ -1,16 +1,18 @@
 (function(){
 
-  if (window.Asteroids.Bullet === "undefined"){
-    window.Asteroids.Bullet = {};
+  if (typeof window.Asteroids === "undefined"){
+    window.Asteroids = {};
   }
 
-  var Bullet = Asteroids.Bullet = function (obj){
+  var Bullet = Asteroids.Bullet = function (obj) {
     this.ship = obj.ship;
     obj.pos = this.ship.pos;
-    obj.radius = Bullet.RADIUS;
     var shipVelocity = this.ship.vel;
     obj.vel = this.computeVel(shipVelocity);
+
+    obj.radius = Bullet.RADIUS;
     obj.color = Bullet.COLOR;
+
     Asteroids.MovingObject.call(this, obj);
     this.wrappable = false;
   }
@@ -28,7 +30,7 @@
   //   }
   // };
 
-  Bullet.prototype.computeVel = function(shipVelocity) {
+  Bullet.prototype.computeVel = function (shipVelocity) {
     var speed = Math.sqrt(Math.pow(shipVelocity[0], 2) +
                           Math.pow(shipVelocity[1], 2));
     var bulletVel = [];

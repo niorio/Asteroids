@@ -1,10 +1,10 @@
 (function(){
 
-  if (window.MovingObject === undefined){
-    window.MovingObject = {};
+  if (typeof window.Asteroids === "undefined"){
+    window.Asteroids = {};
   }
 
-  var MovingObject= Asteroids.MovingObject = function(obj){
+  var MovingObject= Asteroids.MovingObject = function (obj) {
     this.pos = obj.pos;
     this.vel = obj.vel;
     this.radius = obj.radius;
@@ -13,7 +13,7 @@
     this.wrappable = true;
   }
 
-  MovingObject.prototype.draw = function(ctx){
+  MovingObject.prototype.draw = function (ctx) {
     ctx.fillStyle = this.color;
     ctx.beginPath();
 
@@ -29,7 +29,7 @@
     ctx.fill();
   };
 
-  MovingObject.prototype.move = function() {
+  MovingObject.prototype.move = function () {
     var newPos = [];
     var obj = this;
     newPos[0] = this.pos[0] + this.vel[0];
@@ -43,7 +43,7 @@
     }
   };
 
-  MovingObject.prototype.isCollidedWith = function(otherObject) {
+  MovingObject.prototype.isCollidedWith = function (otherObject) {
     var dist = Math.sqrt(Math.pow((this.pos[0] - otherObject.pos[0]), 2) +
                Math.pow((this.pos[1] - otherObject.pos[1]), 2))
     if (dist < (this.radius + otherObject.radius)) {
@@ -53,6 +53,6 @@
     }
   };
 
-  MovingObject.prototype.collideWith = function(obj){};
+  MovingObject.prototype.collideWith = function (obj) {};
 
 })();

@@ -1,7 +1,7 @@
 (function(){
 
-  if (window.Asteroids.GameView === "undefined"){
-    window.Asteroids.GameView = {};
+  if (typeof window.Asteroids === "undefined"){
+    window.Asteroids = {};
   }
 
   var GameView = Asteroids.GameView = function (ctx, game) {
@@ -15,10 +15,10 @@
     this.img.src = 'lib/space.jpg';
     this.game.draw(this.ctx);
     window.setInterval((function(){
-      ctx.clearRect(0, 0, this.game.DIM_X, this.game.DIM_Y);
+      this.ctx.clearRect(0, 0, Asteroids.Game.DIM_X, Asteroids.Game.DIM_Y);
       this.drawImage(ctx);
       this.game.step(ctx);
-    }).bind(this), 1000/100);
+    }).bind(this), 1000/60);
   };
 
   GameView.prototype.bindKeyHandlers = function () {
