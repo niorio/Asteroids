@@ -23,5 +23,6 @@
     key('up', function(){ ship.power([0,-1]) });
     key('left', function(){ ship.power([-1,0]) });
     key('right', function(){ ship.power([1,0]) });
+    key('space', function(){ ship.fireBullet(); });
   };
 })();

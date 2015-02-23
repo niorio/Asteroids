@@ -10,6 +10,7 @@
     this.radius = obj.radius;
     this.color = obj.color;
     this.game = obj.game;
+    this.wrappable = true;
   }
 
   MovingObject.prototype.draw = function(ctx){
@@ -29,10 +30,17 @@
   };
 
   MovingObject.prototype.move = function() {
-    var newPos = []
+    var newPos = [];
+    var obj = this;
     newPos[0] = this.pos[0] + this.vel[0];
     newPos[1] = this.pos[1] + this.vel[1];
-    this.pos = this.game.wrap(newPos);
+    if (obj.wrappable) {
+      this.pos = obj.game.wrap(newPos);
+    } else if (obj.game.outOfBounds(obj.pos)) {
+      obj.game.remove(obj);
+    } else {
+      this.pos = newPos;
+    }
   };
 
   MovingObject.prototype.isCollidedWith = function(otherObject) {
@@ -45,10 +53,6 @@
     }
   };
 
-  MovingObject.prototype.collideWith = function(otherObject){
-    firstObject = this;
-    this.game.remove(firstObject);
-    this.game.remove(otherObject);
-  };
+  MovingObject.prototype.collideWith = function(obj){};
 
 })();

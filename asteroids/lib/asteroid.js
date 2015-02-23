@@ -19,6 +19,9 @@
     firstObject = this;
     if (otherObject instanceof window.Asteroids.Ship){
       otherObject.relocate();
+    } else if (otherObject instanceof window.Asteroids.Bullet) {
+      this.game.remove(firstObject);
+      this.game.remove(otherObject);
     }
   };
 

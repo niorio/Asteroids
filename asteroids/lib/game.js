@@ -9,7 +9,7 @@
     var shipPos = Game.randomPosition();
     this.ship = new Asteroids.Ship({pos: shipPos, game: this});
     this.addAsteroids();
-    this.allObjects = this.asteroids.concat(this.ship)
+    this.allObjects = this.asteroids.concat(this.ship);
   };
 
   Game.DIM_X = window.innerWidth;
@@ -60,6 +60,14 @@
     return pos;
   };
 
+  Game.prototype.outOfBounds = function(pos) {
+    if (pos[0] > Game.DIM_X || pos[0] < 0 || pos[1] > Game.DIM_Y || pos[1] < 0){
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   Game.prototype.checkCollisions = function() {
     for (var i = 0; i < this.allObjects.length; i++){
       for (var j = i+1; j < this.allObjects.length; j++) {
@@ -79,8 +87,8 @@
   };
 
   Game.prototype.remove = function(obj){
-    var i = this.asteroids.indexOf(obj);
-    this.asteroids.splice(i,1);
+    var i = this.allObjects.indexOf(obj);
+    this.allObjects.splice(i,1);
   }
 
 
