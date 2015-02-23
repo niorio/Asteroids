@@ -15,4 +15,11 @@
   Asteroid.COLOR = "red";
   Asteroid.RADIUS = 50;
 
+  Asteroid.prototype.collideWith = function(otherObject){
+    firstObject = this;
+    if (otherObject instanceof window.Asteroids.Ship){
+      otherObject.relocate();
+    }
+  };
+
 })();
