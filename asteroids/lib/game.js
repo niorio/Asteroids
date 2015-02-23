@@ -54,5 +54,29 @@
       pos[1] -= Game.DIM_Y;
     }
     return pos;
+  };
+
+  Game.prototype.checkCollisions = function() {
+    for (var i = 0; i < this.asteroids.length; i++){
+      for (var j = i+1; j < this.asteroids.length; j++) {
+        var obj1 = this.asteroids[i];
+        var obj2 = this.asteroids[j];
+        if (obj1.isCollidedWith(obj2)){
+          obj1.collideWith(obj2);
+        }
+      };
+    };
+  };
+
+  Game.prototype.step = function(ctx) {
+    this.move();
+    this.draw(ctx);
+    this.checkCollisions();
+  };
+
+  Game.prototype.remove = function(obj){
+    var i = this.asteroids.indexOf(obj);
+    this.asteroids.splice(i,1);
   }
+
 })();

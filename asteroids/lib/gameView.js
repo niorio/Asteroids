@@ -12,8 +12,7 @@
   GameView.prototype.start = function() {
     this.game.draw(this.ctx);
     window.setInterval((function(){
-      this.game.move();
-      this.game.draw(this.ctx);
-    }).bind(this), 1000/60);
+      this.game.step(ctx);
+    }).bind(this), 1000/100);
   };
 })();
