@@ -10,9 +10,18 @@
   };
 
   GameView.prototype.start = function() {
+    this.bindKeyHandlers();
     this.game.draw(this.ctx);
     window.setInterval((function(){
       this.game.step(ctx);
     }).bind(this), 1000/100);
+  };
+
+  GameView.prototype.bindKeyHandlers = function(){
+    var ship = this.game.ship;
+    key('down', function(){ ship.power([0,1]) });
+    key('up', function(){ ship.power([0,-1]) });
+    key('left', function(){ ship.power([-1,0]) });
+    key('right', function(){ ship.power([1,0]) });
   };
 })();
