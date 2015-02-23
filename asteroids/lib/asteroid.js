@@ -7,7 +7,7 @@
   var Asteroid = Asteroids.Asteroid = function (obj){
     obj.radius = Asteroid.RADIUS;
     obj.color = Asteroid.COLOR;
-    obj.vel = Asteroids.Util.randomVec(25);
+    obj.vel = Asteroids.Util.randomVec(5);
     Asteroids.MovingObject.call(this, obj);
   }
 

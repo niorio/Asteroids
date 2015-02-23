@@ -7,6 +7,7 @@
     <script charset="utf-8" src="lib/movingObject.js"></script>
     <script charset="utf-8" src="lib/asteroid.js"></script>
     <script charset="utf-8" src="lib/game.js"></script>
+    <script charset="utf-8" src="lib/gameView.js"></script>
     <canvas id="canvas"></canvas>
     <script charset="utf-8">
       var canvasEl = document.getElementsByTagName("canvas")[0];
@@ -14,7 +15,9 @@
       canvasEl.width = window.innerWidth;
       var ctx = canvasEl.getContext("2d");
       var game = new window.Asteroids.Game();
-      game.draw(ctx);
+      game.addAsteroids();
+      var gameview = new window.Asteroids.GameView(ctx, game);
+      gameview.start();
     </script>
   </body>
 </html>

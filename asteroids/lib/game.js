@@ -5,7 +5,7 @@
   }
 
   var Game = Asteroids.Game = function(){
-    this.asteroids = Game.addAsteroids();
+    this.asteroids = [];
   };
 
   Game.DIM_X = window.innerWidth;
@@ -13,13 +13,12 @@
 
   Game.NUM_ASTEROIDS = 4;
 
-  Game.addAsteroids = function() {
-    var arr = [];
+  Game.prototype.addAsteroids = function() {
+    var that = this;
     for(var i = 0; i < Game.NUM_ASTEROIDS; i++){
       position = Game.randomPosition();
-      arr.push(new Asteroids.Asteroid({pos: position}));
+      this.asteroids.push(new Asteroids.Asteroid({pos: position, game: that}));
     }
-    return arr;
   };
 
   Game.randomPosition = function() {
@@ -40,4 +39,20 @@
       this.asteroids[i].move();
     };
   };
+
+  Game.prototype.wrap = function(pos){
+    if (pos[0] < 0){
+      pos[0] += Game.DIM_X;
+    }
+    else if (pos[0] > Game.DIM_X){
+      pos[0] -= Game.DIM_X;
+    }
+    if (pos[1] < 0){
+      pos[1] += Game.DIM_Y;
+    }
+    else if (pos[1] > Game.DIM_Y){
+      pos[1] -= Game.DIM_Y;
+    }
+    return pos;
+  }
 })();
