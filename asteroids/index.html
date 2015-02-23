@@ -1,0 +1,13 @@
+<html>
+  <body>
+    <script charset="utf-8"
+    src="lib/movingObject.js"></script>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <script charset="utf-8">
+      var canvasEl = document.getElementsByTagName("canvas")[0];
+      var ctx = canvasEl.getContext("2d");
+      var obj = new movingObject({pos:[50, 50], vel:[5,5], radius:25, color:"#FF0000"});
+      obj.draw(ctx);
+    </script>
+  </body>
+</html>
