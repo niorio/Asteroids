@@ -32,7 +32,7 @@
   };
 
   Game.prototype.draw = function(ctx){
-    ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+
     for (var i = 0; i< this.allObjects.length; i++){
       this.allObjects[i].draw(ctx);
     };
