@@ -7,7 +7,7 @@
   var Asteroid = Asteroids.Asteroid = function (obj) {
     obj.radius = Asteroid.RADIUS;
     obj.color = Asteroid.COLOR;
-    obj.vel = Asteroids.Util.randomVec(Math.random() * 7);
+    obj.vel = Asteroids.Util.randomVec((Math.random() * 6) + .5);
     Asteroids.MovingObject.call(this, obj);
   }
 
@@ -22,7 +22,15 @@
     } else if (otherObject instanceof window.Asteroids.Bullet) {
       this.game.remove(firstObject);
       this.game.remove(otherObject);
+    } else if (otherObject instanceof window.Asteroids.Asteroid){
+      // firstObject.bounce();
+      // otherObject.bounce();
     }
   };
+
+  Asteroid.prototype.bounce = function(){
+    this.vel[0] = -this.vel[0];
+    this.vel[1] = -this.vel[1];
+  }
 
 })();

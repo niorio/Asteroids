@@ -21,14 +21,6 @@
   Bullet.COLOR = "black";
   Bullet.RADIUS = 3;
 
-  // Bullet.prototype.collideWith = function(otherObject){
-  //   firstObject = this;
-  //   if (otherObject instanceof window.Asteroids.Asteroid){
-  //     console.log(true)
-  //     this.game.remove(firstObject);
-  //     this.game.remove(otherObject);
-  //   }
-  // };
 
   Bullet.prototype.computeVel = function (shipVelocity) {
     var speed = Math.sqrt(Math.pow(shipVelocity[0], 2) +

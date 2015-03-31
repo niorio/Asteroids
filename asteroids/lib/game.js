@@ -21,8 +21,23 @@
     var that = this;
     for(var i = 0; i < Game.NUM_ASTEROIDS; i++){
       position = Game.randomPosition();
-      this.asteroids.push(new Asteroids.Asteroid( {pos: position, game: that} ));
+      newAsteroid = new Asteroids.Asteroid( {pos: position, game: that} );
+      // do {
+      //   evenlySpaced = true;
+      //   for(var j = 0; j < this.asteroids.length; j++){
+      //     if (newAsteroid.isCollidedWith(this.asteroids[j])){
+      //       newAsteroid.pos = Game.randomPosition();
+      //       evenlySpaced = false;
+      //     }
+      //   }
+      // } while (evenlySpaced === false);
+
+      this.asteroids.push(newAsteroid);
+
     }
+
+
+
   };
 
   Game.randomPosition = function () {
@@ -88,6 +103,10 @@
   Game.prototype.remove = function (obj) {
     var i = this.allObjects.indexOf(obj);
     this.allObjects.splice(i,1);
+    if (obj instanceof Asteroids.Asteroid){
+      i = this.asteroids.indexOf(obj);
+      this.asteroids.splice(i,1);
+    }
   }
 
 

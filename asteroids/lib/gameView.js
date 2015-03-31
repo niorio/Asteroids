@@ -16,8 +16,9 @@
     this.game.draw(this.ctx);
     window.setInterval((function(){
       this.ctx.clearRect(0, 0, Asteroids.Game.DIM_X, Asteroids.Game.DIM_Y);
-      this.drawImage(ctx);
+      this.ctx.drawImage(this.img, 0, 0);
       this.game.step(ctx);
+      this.overlay();
     }).bind(this), 1000/60);
   };
 
@@ -30,8 +31,19 @@
     key('space', function () { ship.fireBullet(); });
   };
 
-  GameView.prototype.drawImage = function (ctx) {
-    ctx.drawImage(this.img, 0, 0);
-  };
+  // GameView.prototype.drawImage = function (ctx) {
+  //   ctx.drawImage(this.img, 0, 0);
+  // };
+
+  GameView.prototype.overlay = function() {
+    var x = Math.floor(Asteroids.Game.DIM_X / 4);
+    var y = Math.floor(Asteroids.Game.DIM_Y / 2);
+    ctx.fillStyle = "#990000";
+    ctx.font = 96+"pt Arial ";
+    if (this.game.asteroids.length === 0){
+      ctx.fillText("Game Over", x,y);
+    }
+
+  }
 
 })();
